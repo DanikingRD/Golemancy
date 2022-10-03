@@ -35,6 +35,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import org.quiltmc.loader.api.ModContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

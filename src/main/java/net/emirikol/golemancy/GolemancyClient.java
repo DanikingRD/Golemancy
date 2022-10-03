@@ -10,7 +10,6 @@ import net.emirikol.golemancy.network.Particles;
 import net.emirikol.golemancy.network.SpawnPacket;
 import net.emirikol.golemancy.screen.SoulGrafterScreen;
 import net.emirikol.golemancy.screen.SoulMirrorScreen;
-import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
@@ -26,6 +25,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
+import org.quiltmc.loader.api.ModContainer;
+import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
 
 import java.util.UUID;
 
@@ -34,7 +35,7 @@ public class GolemancyClient implements ClientModInitializer {
     public static final EntityModelLayer MODEL_GOLEM_LAYER = new EntityModelLayer(new Identifier("golemancy", "clay_golem"), "main");
 
     @Override
-    public void onInitializeClient() {
+    public void onInitializeClient(ModContainer container) {
         registerEntities();
         registerParticles();
         registerSpawnPacket();
@@ -98,7 +99,7 @@ public class GolemancyClient implements ClientModInitializer {
                 Entity e = et.create(MinecraftClient.getInstance().world);
                 if (e == null)
                     throw new IllegalStateException("Failed to create instance of entity \"" + Registry.ENTITY_TYPE.getId(et) + "\"!");
-                e.updateTrackedPosition(pos.x, pos.y, pos.z);
+                e.updatePosition(pos.x, pos.y, pos.z);
                 e.setPos(pos.x, pos.y, pos.z);
                 e.setPitch(pitch);
                 e.setYaw(yaw);
