@@ -19,7 +19,6 @@ import net.emirikol.golemancy.item.SoulstoneEmpty;
 import net.emirikol.golemancy.item.SoulstoneFilled;
 import net.emirikol.golemancy.screen.SoulGrafterScreenHandler;
 import net.emirikol.golemancy.screen.SoulMirrorScreenHandler;
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -36,6 +35,7 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.quiltmc.loader.api.ModContainer;
+import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -180,7 +180,7 @@ public class Golemancy implements ModInitializer {
     }
 
     @Override
-    public void onInitialize() {
+    public void onInitialize(ModContainer container) {
         doInstantiation();
         doRegistration();
         CommandRegistrationHandler.commandRegistrationHook(); //add event hook for registering this mod's commands

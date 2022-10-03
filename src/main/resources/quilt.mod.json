@@ -43,10 +43,7 @@
       }
     ]
   },
-  "custom": {
-    "cardinal-components": [
-      "golemancy:golem"
-    ]
-  },
-  "mixin": "example_mod.mixins.json"
+  "cardinal-components": [
+    "golemancy:golem"
+  ]
 }
