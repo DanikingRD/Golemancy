@@ -17,6 +17,7 @@ import net.emirikol.golemancy.item.GolemWand;
 import net.emirikol.golemancy.item.SoulMirror;
 import net.emirikol.golemancy.item.SoulstoneEmpty;
 import net.emirikol.golemancy.item.SoulstoneFilled;
+import net.emirikol.golemancy.registry.GMObjects;
 import net.emirikol.golemancy.screen.SoulGrafterScreenHandler;
 import net.emirikol.golemancy.screen.SoulMirrorScreenHandler;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -46,7 +47,6 @@ public class Golemancy implements ModInitializer {
     public static final Identifier ConfigPacketID = new Identifier("golemancy", "config_packet");
     private static final float GOLEM_WIDTH = 0.7f;
     private static final float GOLEM_HEIGHT = 1.30f;
-    public static SoulstoneEmpty SOULSTONE_EMPTY;
     public static SoulstoneFilled SOULSTONE_FILLED;
     public static SoulMirror SOUL_MIRROR;
     public static ScreenHandlerType<SoulMirrorScreenHandler> SOUL_MIRROR_SCREEN_HANDLER;
@@ -81,7 +81,6 @@ public class Golemancy implements ModInitializer {
     public static void doInstantiation() {
         //Instantiate soulstones.
         FabricItemSettings soulstone_settings = new FabricItemSettings();
-        SOULSTONE_EMPTY = new SoulstoneEmpty(soulstone_settings);
         SOULSTONE_FILLED = new SoulstoneFilled(soulstone_settings);
         //Instantiate soul mirror.
         FabricItemSettings soul_mirror_settings = new FabricItemSettings();
@@ -137,7 +136,6 @@ public class Golemancy implements ModInitializer {
 
     public static void doRegistration() {
         //Register soulstones.
-        Registry.register(Registry.ITEM, "golemancy:soulstone_empty", SOULSTONE_EMPTY);
         Registry.register(Registry.ITEM, "golemancy:soulstone_filled", SOULSTONE_FILLED);
         //Register soul mirror.
         Registry.register(Registry.ITEM, "golemancy:soul_mirror", SOUL_MIRROR);
@@ -181,6 +179,7 @@ public class Golemancy implements ModInitializer {
 
     @Override
     public void onInitialize(ModContainer container) {
+        GMObjects.register();
         doInstantiation();
         doRegistration();
         CommandRegistrationHandler.commandRegistrationHook(); //add event hook for registering this mod's commands

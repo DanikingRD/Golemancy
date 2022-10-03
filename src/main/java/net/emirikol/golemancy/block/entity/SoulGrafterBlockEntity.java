@@ -7,6 +7,7 @@ import net.emirikol.golemancy.genetics.Gene;
 import net.emirikol.golemancy.genetics.Genome;
 import net.emirikol.golemancy.inventory.ImplementedSidedInventory;
 import net.emirikol.golemancy.item.SoulstoneFilled;
+import net.emirikol.golemancy.registry.GMObjects;
 import net.emirikol.golemancy.screen.SoulGrafterScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -126,7 +127,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
         }
         //You can insert empty soulstones into empty soulstone slots.
         for (int i : EMPTYSTONE_SLOTS) {
-            if ((slot == i) && (stack.isItemEqual(new ItemStack(Golemancy.SOULSTONE_EMPTY)))) {
+            if ((slot == i) && (stack.isItemEqual(new ItemStack(GMObjects.SOULSTONE_EMPTY)))) {
                 return true;
             }
         }
@@ -187,7 +188,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
         }
         //Check if the empty soulstone slot contains at least one empty soulstone.
         Item item = items.get(EMPTYSTONE_SLOTS[0]).getItem();
-        if (!(item == Golemancy.SOULSTONE_EMPTY)) {
+        if (!(item == GMObjects.SOULSTONE_EMPTY)) {
             return false;
         }
         //Check if there is at least one empty output slot.

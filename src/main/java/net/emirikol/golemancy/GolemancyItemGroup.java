@@ -3,6 +3,7 @@ package net.emirikol.golemancy;
 import net.emirikol.golemancy.genetics.Genome;
 import net.emirikol.golemancy.genetics.Genomes;
 import net.emirikol.golemancy.genetics.SoulTypes;
+import net.emirikol.golemancy.registry.GMObjects;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -24,7 +25,7 @@ public class GolemancyItemGroup {
                     stacks.add(new ItemStack(Golemancy.CLAY_EFFIGY));
                     stacks.add(new ItemStack(Golemancy.TERRACOTTA_EFFIGY));
                     stacks.add(new ItemStack(Golemancy.OBSIDIAN_EFFIGY));
-                    stacks.add(new ItemStack(Golemancy.SOULSTONE_EMPTY));
+                    stacks.add(new ItemStack(GMObjects.SOULSTONE_EMPTY));
                     List<Genome> genomes = Arrays.asList(
                             //Natural genomes
                             Genomes.creativeGenome(SoulTypes.COVETOUS),

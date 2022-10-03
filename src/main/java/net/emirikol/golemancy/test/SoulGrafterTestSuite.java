@@ -4,6 +4,7 @@ import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.block.entity.SoulGrafterBlockEntity;
 import net.emirikol.golemancy.genetics.Genomes;
 import net.emirikol.golemancy.genetics.SoulTypes;
+import net.emirikol.golemancy.registry.GMObjects;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -46,7 +47,7 @@ public class SoulGrafterTestSuite extends AbstractTestSuite {
         }
         //Test insertion into empty soulstone slots.
         for (int slot : SoulGrafterBlockEntity.EMPTYSTONE_SLOTS) {
-            ItemStack valid = new ItemStack(Golemancy.SOULSTONE_EMPTY);
+            ItemStack valid = new ItemStack(GMObjects.SOULSTONE_EMPTY);
             assertTrue(entity.canInsert(slot, valid, Direction.NORTH), "inserting empty soulstone into soul grafter stone slot failed");
             ItemStack invalid = new ItemStack(Items.DIRT);
             assertFalse(entity.canInsert(slot, invalid, Direction.NORTH), "inserting invalid item into soul grafter stone slot succeeded");
@@ -103,7 +104,7 @@ public class SoulGrafterTestSuite extends AbstractTestSuite {
             entity.setStack(slot, parent);
         }
         for (int slot : SoulGrafterBlockEntity.EMPTYSTONE_SLOTS) {
-            ItemStack stones = new ItemStack(Golemancy.SOULSTONE_EMPTY);
+            ItemStack stones = new ItemStack(GMObjects.SOULSTONE_EMPTY);
             stones.setCount(64);
             entity.setStack(slot, stones);
         }
