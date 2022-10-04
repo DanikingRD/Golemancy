@@ -8,6 +8,7 @@ import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.genetics.SoulTypes;
 import net.emirikol.golemancy.network.Particles;
 import net.emirikol.golemancy.network.SpawnPacket;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.emirikol.golemancy.registry.GMObjects;
 import net.emirikol.golemancy.screen.SoulGrafterScreen;
 import net.emirikol.golemancy.screen.SoulMirrorScreen;
@@ -57,7 +58,7 @@ public class GolemancyClient implements ClientModInitializer {
             EntityRendererRegistry.register(type, GolemEntityRenderer::new);
         }
         //Register Clayball Renderer
-        EntityRendererRegistry.register(Golemancy.CLAYBALL, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(GMEntityTypes.CLAYBALL, FlyingItemEntityRenderer::new);
     }
 
     public void registerParticles() {

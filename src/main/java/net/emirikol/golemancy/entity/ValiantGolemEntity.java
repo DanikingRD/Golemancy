@@ -2,6 +2,7 @@ package net.emirikol.golemancy.entity;
 
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.goal.GolemExtractToolGoal;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.mob.CreeperEntity;
@@ -33,7 +34,7 @@ public class ValiantGolemEntity extends AbstractGolemEntity {
 
     @Override
     public ValiantGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        ValiantGolemEntity golemEntity = Golemancy.VALIANT_GOLEM_ENTITY.create(serverWorld);
+        ValiantGolemEntity golemEntity = GMEntityTypes.VALIANT_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

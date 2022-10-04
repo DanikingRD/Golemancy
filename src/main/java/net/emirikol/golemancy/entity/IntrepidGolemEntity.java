@@ -3,6 +3,7 @@ package net.emirikol.golemancy.entity;
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.goal.GolemDropHeldItemGoal;
 import net.emirikol.golemancy.entity.projectile.ClayballEntity;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.RangedAttackMob;
@@ -37,7 +38,7 @@ public class IntrepidGolemEntity extends AbstractGolemEntity implements RangedAt
 
     @Override
     public IntrepidGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        IntrepidGolemEntity golemEntity = Golemancy.INTREPID_GOLEM_ENTITY.create(serverWorld);
+        IntrepidGolemEntity golemEntity = GMEntityTypes.INTREPID_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

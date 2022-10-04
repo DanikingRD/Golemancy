@@ -17,6 +17,7 @@ import net.emirikol.golemancy.item.GolemWand;
 import net.emirikol.golemancy.item.SoulMirror;
 import net.emirikol.golemancy.item.SoulstoneEmpty;
 import net.emirikol.golemancy.item.SoulstoneFilled;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.emirikol.golemancy.registry.GMObjects;
 import net.emirikol.golemancy.screen.SoulGrafterScreenHandler;
 import net.emirikol.golemancy.screen.SoulMirrorScreenHandler;
@@ -45,27 +46,11 @@ import static net.emirikol.golemancy.GolemancyItemGroup.buildGolemancyItemGroup;
 public class Golemancy implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("Golemancy");
     public static final Identifier ConfigPacketID = new Identifier("golemancy", "config_packet");
-    private static final float GOLEM_WIDTH = 0.7f;
-    private static final float GOLEM_HEIGHT = 1.30f;
+
     public static ScreenHandlerType<SoulMirrorScreenHandler> SOUL_MIRROR_SCREEN_HANDLER;
     public static BlockEntityType<SoulGrafterBlockEntity> SOUL_GRAFTER_ENTITY;
     public static ScreenHandlerType<SoulGrafterScreenHandler> SOUL_GRAFTER_SCREEN_HANDLER;
-    public static EntityType<CarefulGolemEntity> CAREFUL_GOLEM_ENTITY;
-    public static EntityType<CovetousGolemEntity> COVETOUS_GOLEM_ENTITY;
-    public static EntityType<CuriousGolemEntity> CURIOUS_GOLEM_ENTITY;
-    public static EntityType<EntropicGolemEntity> ENTROPIC_GOLEM_ENTITY;
-    public static EntityType<HungryGolemEntity> HUNGRY_GOLEM_ENTITY;
-    public static EntityType<IntrepidGolemEntity> INTREPID_GOLEM_ENTITY;
-    public static EntityType<MarshyGolemEntity> MARSHY_GOLEM_ENTITY;
-    public static EntityType<ParchedGolemEntity> PARCHED_GOLEM_ENTITY;
-    public static EntityType<PiousGolemEntity> PIOUS_GOLEM_ENTITY;
-    public static EntityType<RestlessGolemEntity> RESTLESS_GOLEM_ENTITY;
-    public static EntityType<RusticGolemEntity> RUSTIC_GOLEM_ENTITY;
-    public static EntityType<TactileGolemEntity> TACTILE_GOLEM_ENTITY;
-    public static EntityType<ValiantGolemEntity> VALIANT_GOLEM_ENTITY;
-    public static EntityType<VerdantGolemEntity> VERDANT_GOLEM_ENTITY;
-    public static EntityType<WeepingGolemEntity> WEEPING_GOLEM_ENTITY;
-    public static EntityType<ClayballEntity> CLAYBALL;
+
 
     public static void doInstantiation() {
         SOUL_MIRROR_SCREEN_HANDLER = ScreenHandlerRegistry.registerExtended(new Identifier("golemancy", "soul_mirror"), SoulMirrorScreenHandler::new);
@@ -92,53 +77,22 @@ public class Golemancy implements ModInitializer {
 //        OBSIDIAN_EFFIGY_BLOCK = new ObsidianEffigyBlock(clay_effigy_settings);
 //        OBSIDIAN_EFFIGY = new BlockItem(OBSIDIAN_EFFIGY_BLOCK, effigy_settings);
 //        //Instantiate golems.
-        CAREFUL_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CarefulGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        COVETOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CovetousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        CURIOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CuriousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        ENTROPIC_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntropicGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        HUNGRY_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HungryGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        INTREPID_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, IntrepidGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        MARSHY_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, MarshyGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        PARCHED_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ParchedGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        PIOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, PiousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        RESTLESS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, RestlessGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        RUSTIC_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, RusticGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        TACTILE_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, TactileGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        VALIANT_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ValiantGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        VERDANT_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, VerdantGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        WEEPING_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, WeepingGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-        //Instantiate clayball projectile.
-        CLAYBALL = FabricEntityTypeBuilder.<ClayballEntity>create(SpawnGroup.MISC, ClayballEntity::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build();
+
     }
 
     public static void doRegistration() {
         Registry.register(Registry.BLOCK_ENTITY_TYPE, "golemancy:soul_grafter", SOUL_GRAFTER_ENTITY);
         //Register golems.
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_careful", CAREFUL_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_covetous", COVETOUS_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_curious", CURIOUS_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_entropic", ENTROPIC_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_hungry", HUNGRY_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_intrepid", INTREPID_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_marshy", MARSHY_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_parched", PARCHED_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_pious", PIOUS_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_restless", RESTLESS_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_rustic", RUSTIC_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_tactile", TACTILE_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_valiant", VALIANT_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_verdant", VERDANT_GOLEM_ENTITY);
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_weeping", WEEPING_GOLEM_ENTITY);
+
         for (EntityType<? extends AbstractGolemEntity> type : SoulTypes.getEntityTypes()) {
             FabricDefaultAttributeRegistry.register(type, AbstractGolemEntity.createGolemAttributes());
         }
-        //Register clayball projectile.
-        Registry.register(Registry.ENTITY_TYPE, "golemancy:clayball", CLAYBALL);
     }
 
     @Override
     public void onInitialize(ModContainer container) {
         GMObjects.register();
+        GMEntityTypes.register();
         doInstantiation();
         doRegistration();
         CommandRegistrationHandler.commandRegistrationHook(); //add event hook for registering this mod's commands
