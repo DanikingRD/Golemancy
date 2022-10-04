@@ -12,7 +12,6 @@ import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.emirikol.golemancy.registry.GMObjects;
 import net.emirikol.golemancy.screen.SoulGrafterScreen;
 import net.emirikol.golemancy.screen.SoulMirrorScreen;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -29,6 +28,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
+import org.quiltmc.qsl.block.extensions.api.client.BlockRenderLayerMap;
 
 import java.util.UUID;
 
@@ -43,8 +43,8 @@ public class GolemancyClient implements ClientModInitializer {
         registerSpawnPacket();
         registerConfigPacket();
 
-        BlockRenderLayerMap.INSTANCE.putBlock(GMObjects.CLAY_EFFIGY, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(GMObjects.TERRACOTTA_EFFIGY, RenderLayer.getCutout());
+        BlockRenderLayerMap.put(RenderLayer.getCutout(), GMObjects.CLAY_EFFIGY);
+        BlockRenderLayerMap.put(RenderLayer.getCutout(), GMObjects.TERRACOTTA_EFFIGY);
         EntityModelLayerRegistry.registerModelLayer(MODEL_GOLEM_LAYER, GolemEntityModel::getTexturedModelData);
     }
 

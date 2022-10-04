@@ -7,16 +7,12 @@ import net.emirikol.golemancy.registry.GMObjects;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class GolemancyItemGroup {
-    public static ItemGroup GOLEMANCY_ITEM_GROUP;
-
-    public static void buildGolemancyItemGroup() {
-        GOLEMANCY_ITEM_GROUP = FabricItemGroupBuilder.create(new Identifier("golemancy", "golemancy_items"))
+    public static final ItemGroup GOLEMANCY_ITEM_GROUP = FabricItemGroupBuilder.create(new GMIdentifier("golemancy_items"))
                 .icon(() -> new ItemStack(GMObjects.CLAY_EFFIGY))
                 .appendItems(stacks -> {
                     stacks.add(new ItemStack(GMObjects.SOUL_MIRROR));
@@ -50,8 +46,5 @@ public class GolemancyItemGroup {
                         genome.toItemStack(stack);
                         stacks.add(stack);
                     }
-                })
-                .build();
-    }
-
+                }).build();
 }
