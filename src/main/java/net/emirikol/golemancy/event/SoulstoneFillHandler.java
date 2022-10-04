@@ -26,7 +26,7 @@ public class SoulstoneFillHandler {
                     if (soulstoneStack != null) {
                         soulstoneStack.decrement(1);
                         //Create a new filled soulstone.
-                        ItemStack newSoulstoneStack = new ItemStack(Golemancy.SOULSTONE_FILLED);
+                        ItemStack newSoulstoneStack = new ItemStack(GMObjects.SOULSTONE_FILLED);
                         //Get the corresponding genome and apply it to the new soulstone.
                         Genome genome = Genomes.get(killed.getType());
                         genome.toItemStack(newSoulstoneStack);

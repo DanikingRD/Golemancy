@@ -8,6 +8,7 @@ import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.genetics.SoulTypes;
 import net.emirikol.golemancy.network.Particles;
 import net.emirikol.golemancy.network.SpawnPacket;
+import net.emirikol.golemancy.registry.GMObjects;
 import net.emirikol.golemancy.screen.SoulGrafterScreen;
 import net.emirikol.golemancy.screen.SoulMirrorScreen;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -41,8 +42,8 @@ public class GolemancyClient implements ClientModInitializer {
         registerSpawnPacket();
         registerConfigPacket();
 
-        BlockRenderLayerMap.INSTANCE.putBlock(Golemancy.CLAY_EFFIGY_BLOCK, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(Golemancy.TERRACOTTA_EFFIGY_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GMObjects.CLAY_EFFIGY, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GMObjects.TERRACOTTA_EFFIGY, RenderLayer.getCutout());
         EntityModelLayerRegistry.registerModelLayer(MODEL_GOLEM_LAYER, GolemEntityModel::getTexturedModelData);
     }
 

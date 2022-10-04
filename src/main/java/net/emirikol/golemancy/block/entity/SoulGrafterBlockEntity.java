@@ -121,7 +121,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
     public boolean isValid(int slot, ItemStack stack) {
         //You can insert filled soulstones into parent slots.
         for (int i : PARENT_SLOTS) {
-            if ((slot == i) && (stack.isItemEqual(new ItemStack(Golemancy.SOULSTONE_FILLED)))) {
+            if ((slot == i) && (stack.isItemEqual(new ItemStack(GMObjects.SOULSTONE_FILLED)))) {
                 return true;
             }
         }
@@ -297,7 +297,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
             if (emptySoulstones.getCount() > 0) {
                 //Breed the parents to create a new soulstone with a new genome.
                 Genome childGenome = Genome.breed(new Genome(parents[0]), new Genome(parents[1]));
-                ItemStack child = new ItemStack(Golemancy.SOULSTONE_FILLED);
+                ItemStack child = new ItemStack(GMObjects.SOULSTONE_FILLED);
                 childGenome.toItemStack(child);
                 //Output new soulstone and decrement empty soulstones.
                 graftOutput(child);

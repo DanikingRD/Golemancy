@@ -34,12 +34,12 @@ public class SoulGrafterTestSuite extends AbstractTestSuite {
         //Create a soul grafter block at the specified location.
         ServerWorld serverWorld = (ServerWorld) this.getWorld();
         BlockPos startPos = this.getRandomBlockPos();
-        serverWorld.setBlockState(startPos, Golemancy.SOUL_GRAFTER.getDefaultState());
+        serverWorld.setBlockState(startPos, GMObjects.SOUL_GRAFTER.getDefaultState());
         SoulGrafterBlockEntity entity = (SoulGrafterBlockEntity) serverWorld.getBlockEntity(startPos);
         assertTrue(entity != null, "soul grafter blockentity returned null");
         //Test insertion into parent slots.
         for (int slot : SoulGrafterBlockEntity.PARENT_SLOTS) {
-            ItemStack valid = new ItemStack(Golemancy.SOULSTONE_FILLED);
+            ItemStack valid = new ItemStack(GMObjects.SOULSTONE_FILLED);
             Genomes.creativeGenome(SoulTypes.CURIOUS).toItemStack(valid);
             assertTrue(entity.canInsert(slot, valid, Direction.NORTH), "inserting valid soulstone into soul grafter parent slot failed");
             ItemStack invalid = new ItemStack(Items.DIRT);
@@ -61,7 +61,7 @@ public class SoulGrafterTestSuite extends AbstractTestSuite {
         }
         //Test insertion into output slots.
         for (int slot : SoulGrafterBlockEntity.OUTPUT_SLOTS) {
-            ItemStack valid = new ItemStack(Golemancy.SOULSTONE_FILLED);
+            ItemStack valid = new ItemStack(GMObjects.SOULSTONE_FILLED);
             Genomes.creativeGenome(SoulTypes.CURIOUS).toItemStack(valid);
             assertFalse(entity.canInsert(slot, valid, Direction.NORTH), "inserting into soul grafter output-only slot succeeded");
         }
@@ -73,7 +73,7 @@ public class SoulGrafterTestSuite extends AbstractTestSuite {
         //Create a soul grafter block at the specified location.
         ServerWorld serverWorld = (ServerWorld) this.getWorld();
         BlockPos startPos = this.getRandomBlockPos();
-        serverWorld.setBlockState(startPos, Golemancy.SOUL_GRAFTER.getDefaultState());
+        serverWorld.setBlockState(startPos, GMObjects.SOUL_GRAFTER.getDefaultState());
         SoulGrafterBlockEntity entity = (SoulGrafterBlockEntity) serverWorld.getBlockEntity(startPos);
         assertTrue(entity != null, "soul grafter blockentity returned null");
         //Check we can extract from output slots.
@@ -94,12 +94,12 @@ public class SoulGrafterTestSuite extends AbstractTestSuite {
         //Create a soul grafter block at the specified location.
         ServerWorld serverWorld = (ServerWorld) this.getWorld();
         BlockPos startPos = this.getRandomBlockPos();
-        serverWorld.setBlockState(startPos, Golemancy.SOUL_GRAFTER.getDefaultState());
+        serverWorld.setBlockState(startPos, GMObjects.SOUL_GRAFTER.getDefaultState());
         SoulGrafterBlockEntity entity = (SoulGrafterBlockEntity) serverWorld.getBlockEntity(startPos);
         assertTrue(entity != null, "soul grafter blockentity returned null");
         //Insert parents, empty soulstones, and fuel into the grafter.
         for (int slot : SoulGrafterBlockEntity.PARENT_SLOTS) {
-            ItemStack parent = new ItemStack(Golemancy.SOULSTONE_FILLED);
+            ItemStack parent = new ItemStack(GMObjects.SOULSTONE_FILLED);
             Genomes.creativeGenome(SoulTypes.CURIOUS).toItemStack(parent);
             entity.setStack(slot, parent);
         }

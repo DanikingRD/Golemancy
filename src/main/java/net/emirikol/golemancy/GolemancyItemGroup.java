@@ -17,14 +17,14 @@ public class GolemancyItemGroup {
 
     public static void buildGolemancyItemGroup() {
         GOLEMANCY_ITEM_GROUP = FabricItemGroupBuilder.create(new Identifier("golemancy", "golemancy_items"))
-                .icon(() -> new ItemStack(Golemancy.CLAY_EFFIGY))
+                .icon(() -> new ItemStack(GMObjects.CLAY_EFFIGY))
                 .appendItems(stacks -> {
-                    stacks.add(new ItemStack(Golemancy.SOUL_MIRROR));
-                    stacks.add(new ItemStack(Golemancy.SOUL_GRAFTER_ITEM));
-                    stacks.add(new ItemStack(Golemancy.GOLEM_WAND));
-                    stacks.add(new ItemStack(Golemancy.CLAY_EFFIGY));
-                    stacks.add(new ItemStack(Golemancy.TERRACOTTA_EFFIGY));
-                    stacks.add(new ItemStack(Golemancy.OBSIDIAN_EFFIGY));
+                    stacks.add(new ItemStack(GMObjects.SOUL_MIRROR));
+                    stacks.add(new ItemStack(GMObjects.SOUL_GRAFTER));
+                    stacks.add(new ItemStack(GMObjects.GOLEM_WAND));
+                    stacks.add(new ItemStack(GMObjects.CLAY_EFFIGY));
+                    stacks.add(new ItemStack(GMObjects.TERRACOTTA_EFFIGY));
+                    stacks.add(new ItemStack(GMObjects.OBSIDIAN_EFFIGY));
                     stacks.add(new ItemStack(GMObjects.SOULSTONE_EMPTY));
                     List<Genome> genomes = Arrays.asList(
                             //Natural genomes
@@ -46,7 +46,7 @@ public class GolemancyItemGroup {
                             Genomes.creativeGenome(SoulTypes.VERDANT)
                     );
                     for (Genome genome : genomes) {
-                        ItemStack stack = new ItemStack(Golemancy.SOULSTONE_FILLED);
+                        ItemStack stack = new ItemStack(GMObjects.SOULSTONE_FILLED);
                         genome.toItemStack(stack);
                         stacks.add(stack);
                     }

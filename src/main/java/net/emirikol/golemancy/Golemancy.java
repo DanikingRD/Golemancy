@@ -47,20 +47,9 @@ public class Golemancy implements ModInitializer {
     public static final Identifier ConfigPacketID = new Identifier("golemancy", "config_packet");
     private static final float GOLEM_WIDTH = 0.7f;
     private static final float GOLEM_HEIGHT = 1.30f;
-    public static SoulstoneFilled SOULSTONE_FILLED;
-    public static SoulMirror SOUL_MIRROR;
     public static ScreenHandlerType<SoulMirrorScreenHandler> SOUL_MIRROR_SCREEN_HANDLER;
-    public static GolemWand GOLEM_WAND;
-    public static SoulGrafterBlock SOUL_GRAFTER;
-    public static BlockItem SOUL_GRAFTER_ITEM;
     public static BlockEntityType<SoulGrafterBlockEntity> SOUL_GRAFTER_ENTITY;
     public static ScreenHandlerType<SoulGrafterScreenHandler> SOUL_GRAFTER_SCREEN_HANDLER;
-    public static BlockItem CLAY_EFFIGY;
-    public static ClayEffigyBlock CLAY_EFFIGY_BLOCK;
-    public static BlockItem TERRACOTTA_EFFIGY;
-    public static TerracottaEffigyBlock TERRACOTTA_EFFIGY_BLOCK;
-    public static BlockItem OBSIDIAN_EFFIGY;
-    public static ObsidianEffigyBlock OBSIDIAN_EFFIGY_BLOCK;
     public static EntityType<CarefulGolemEntity> CAREFUL_GOLEM_ENTITY;
     public static EntityType<CovetousGolemEntity> COVETOUS_GOLEM_ENTITY;
     public static EntityType<CuriousGolemEntity> CURIOUS_GOLEM_ENTITY;
@@ -79,42 +68,30 @@ public class Golemancy implements ModInitializer {
     public static EntityType<ClayballEntity> CLAYBALL;
 
     public static void doInstantiation() {
-        //Instantiate soulstones.
-        FabricItemSettings soulstone_settings = new FabricItemSettings();
-        SOULSTONE_FILLED = new SoulstoneFilled(soulstone_settings);
-        //Instantiate soul mirror.
-        FabricItemSettings soul_mirror_settings = new FabricItemSettings();
-        soul_mirror_settings.maxCount(1);
-        soul_mirror_settings.maxDamage(256);
-        SOUL_MIRROR = new SoulMirror(soul_mirror_settings);
         SOUL_MIRROR_SCREEN_HANDLER = ScreenHandlerRegistry.registerExtended(new Identifier("golemancy", "soul_mirror"), SoulMirrorScreenHandler::new);
-        //Instantiate golem wand.
-        FabricItemSettings golem_wand_settings = new FabricItemSettings();
-        golem_wand_settings.maxCount(1);
-        GOLEM_WAND = new GolemWand(golem_wand_settings);
         //Instantiate soul grafter.
-        FabricBlockSettings soul_grafter_settings = FabricBlockSettings.of(Material.STONE);
-        soul_grafter_settings.hardness(4.0F).strength(5.0F, 1200.0F);
-        soul_grafter_settings.requiresTool();
-        SOUL_GRAFTER = new SoulGrafterBlock(soul_grafter_settings);
-        FabricItemSettings soul_grafter_item_settings = new FabricItemSettings();
-        SOUL_GRAFTER_ITEM = new BlockItem(SOUL_GRAFTER, soul_grafter_item_settings);
-        SOUL_GRAFTER_ENTITY = FabricBlockEntityTypeBuilder.create(SoulGrafterBlockEntity::new, SOUL_GRAFTER).build(null);
+//        FabricBlockSettings soul_grafter_settings = FabricBlockSettings.of(Material.STONE);
+//        soul_grafter_settings.hardness(4.0F).strength(5.0F, 1200.0F);
+//        soul_grafter_settings.requiresTool();
+//        SOUL_GRAFTER = new SoulGrafterBlock(soul_grafter_settings);
+//        FabricItemSettings soul_grafter_item_settings = new FabricItemSettings();
+//        SOUL_GRAFTER_ITEM = new BlockItem(SOUL_GRAFTER, soul_grafter_item_settings);
+        SOUL_GRAFTER_ENTITY = FabricBlockEntityTypeBuilder.create(SoulGrafterBlockEntity::new, GMObjects.SOUL_GRAFTER).build(null);
         SOUL_GRAFTER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier("golemancy", "soul_grafter"), SoulGrafterScreenHandler::new);
         //Instantiate clay effigy.
-        FabricBlockSettings clay_effigy_settings = FabricBlockSettings.of(Material.DECORATION);
-        clay_effigy_settings.strength(0.6F).nonOpaque();
-        CLAY_EFFIGY_BLOCK = new ClayEffigyBlock(clay_effigy_settings);
-        FabricItemSettings effigy_settings = new FabricItemSettings();
-        effigy_settings.group(null);
-        CLAY_EFFIGY = new BlockItem(CLAY_EFFIGY_BLOCK, effigy_settings);
-        //Instantiate terracotta effigy.
-        TERRACOTTA_EFFIGY_BLOCK = new TerracottaEffigyBlock(clay_effigy_settings);
-        TERRACOTTA_EFFIGY = new BlockItem(TERRACOTTA_EFFIGY_BLOCK, effigy_settings);
+//        FabricBlockSettings clay_effigy_settings = FabricBlockSettings.of(Material.DECORATION);
+//        clay_effigy_settings.strength(0.6F).nonOpaque();
+//        CLAY_EFFIGY_BLOCK = new ClayEffigyBlock(clay_effigy_settings);
+//        FabricItemSettings effigy_settings = new FabricItemSettings();
+//        effigy_settings.group(null);
+//        CLAY_EFFIGY = new BlockItem(CLAY_EFFIGY_BLOCK, effigy_settings);
+//        //Instantiate terracotta effigy.
+//        TERRACOTTA_EFFIGY_BLOCK = new TerracottaEffigyBlock(clay_effigy_settings);
+//        TERRACOTTA_EFFIGY = new BlockItem(TERRACOTTA_EFFIGY_BLOCK, effigy_settings);
         //Instantiate obsidian effigy.
-        OBSIDIAN_EFFIGY_BLOCK = new ObsidianEffigyBlock(clay_effigy_settings);
-        OBSIDIAN_EFFIGY = new BlockItem(OBSIDIAN_EFFIGY_BLOCK, effigy_settings);
-        //Instantiate golems.
+//        OBSIDIAN_EFFIGY_BLOCK = new ObsidianEffigyBlock(clay_effigy_settings);
+//        OBSIDIAN_EFFIGY = new BlockItem(OBSIDIAN_EFFIGY_BLOCK, effigy_settings);
+//        //Instantiate golems.
         CAREFUL_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CarefulGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
         COVETOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CovetousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
         CURIOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CuriousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
@@ -135,25 +112,7 @@ public class Golemancy implements ModInitializer {
     }
 
     public static void doRegistration() {
-        //Register soulstones.
-        Registry.register(Registry.ITEM, "golemancy:soulstone_filled", SOULSTONE_FILLED);
-        //Register soul mirror.
-        Registry.register(Registry.ITEM, "golemancy:soul_mirror", SOUL_MIRROR);
-        //Register golem wand.
-        Registry.register(Registry.ITEM, "golemancy:golem_wand", GOLEM_WAND);
-        //Register soul grafter.
-        Registry.register(Registry.BLOCK, "golemancy:soul_grafter", SOUL_GRAFTER);
-        Registry.register(Registry.ITEM, "golemancy:soul_grafter", SOUL_GRAFTER_ITEM);
         Registry.register(Registry.BLOCK_ENTITY_TYPE, "golemancy:soul_grafter", SOUL_GRAFTER_ENTITY);
-        //Register clay effigy.
-        Registry.register(Registry.ITEM, "golemancy:clay_effigy", CLAY_EFFIGY);
-        Registry.register(Registry.BLOCK, "golemancy:clay_effigy", CLAY_EFFIGY_BLOCK);
-        //Register terracotta effigy.
-        Registry.register(Registry.ITEM, "golemancy:terracotta_effigy", TERRACOTTA_EFFIGY);
-        Registry.register(Registry.BLOCK, "golemancy:terracotta_effigy", TERRACOTTA_EFFIGY_BLOCK);
-        //Register obsidian effigy.
-        Registry.register(Registry.ITEM, "golemancy:obsidian_effigy", OBSIDIAN_EFFIGY);
-        Registry.register(Registry.BLOCK, "golemancy:obsidian_effigy", OBSIDIAN_EFFIGY_BLOCK);
         //Register golems.
         Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_careful", CAREFUL_GOLEM_ENTITY);
         Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_covetous", COVETOUS_GOLEM_ENTITY);
